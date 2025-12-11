@@ -62,3 +62,4 @@ curl -s http://localhost:5000/api/trace/batch/$BID | jq
 
 ## Licencia
 MIT
+
