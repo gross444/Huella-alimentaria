@@ -1,0 +1,10 @@
+.DS_Store
+bin/
+obj/
+*.user
+*.suo
+*.swp
+*.tmp
+*.log
+.vs/
+*/Properties/launchSettings.json
