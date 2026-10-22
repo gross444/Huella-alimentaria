@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Huella Alimentaria | Trazabilidad QR</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1> Huella Alimentaria: Trazabilidad QR</h1>
+        <p>Consulta pública de la cadena de suministro (Operation Easy)</p>
+    </header>
+
+    <main>
+        <section class="consulta-form">
+            <h2>Escanear/Ingresar Lote ID (QR Simulado)</h2>
+            <input type="text" id="batchIdInput" placeholder="Ej: 54A0F9B4-B1F3-43E8-B8F0-..." required>
+            <button onclick="consultarTrazabilidad()">Consultar Lote</button>
+        </section>
+
+        <section id="resultado" class="resultado-seccion" style="display:none;">
+            <h2>Historial de Trazabilidad</h2>
+            <div id="validacion-status"></div>
+            <div id="historial-eventos" class="historial">
+                </div>
+            <p id="mensaje-error" class="error-msg" style="display:none;"></p>
+        </section>
+    </main>
+
+    <footer>
+        <p>Plataforma impulsada por Blockchain-Lite y .NET Core.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -13,6 +13,12 @@ public class HashService
         return Convert.ToHexString(bytes).ToLowerInvariant();
     }
 
-    public string ComputeFor(TraceEvent e) =>
-        Compute($"{e.BatchId}|{e.Stage}|{e.Location}|{e.Timestamp:O}|{e.Data}|{e.PrevHash}");
+    // Este método es el que usa TraceController en línea 42
+    public string ComputeFor(TraceEvent e)
+    {
+        if (e == null) return string.Empty;
+        
+        var input = $"{e.BatchId}|{e.Stage}|{e.Location}|{e.Timestamp:O}|{e.Data}|{e.PrevHash}";
+        return Compute(input);
+    }
 }

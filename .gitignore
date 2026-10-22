@@ -8,3 +8,5 @@ obj/
 *.log
 .vs/
 */Properties/launchSettings.json
+ *.exe
+desktop.ini

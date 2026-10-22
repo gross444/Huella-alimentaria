@@ -12,10 +12,23 @@ public class ProductsController : ControllerBase
 
     public ProductsController(InMemoryDb db) => _db = db;
 
+    // GET: api/products (NUEVO - para listar todos)
+    [HttpGet]
+    public ActionResult<IEnumerable<Product>> GetAll()
+    {
+        return Ok(_db.Products);
+    }
+
     [HttpPost]
     public ActionResult<Product> Create(Product p)
     {
-        if (string.IsNullOrWhiteSpace(p.Name)) return BadRequest("Name es requerido");
+        if (string.IsNullOrWhiteSpace(p.Name)) 
+            return BadRequest("Name es requerido");
+        
+        // Generar ID si no viene
+        if (string.IsNullOrEmpty(p.Id))
+            p.Id = Guid.NewGuid().ToString();
+            
         _db.Products.Add(p);
         return CreatedAtAction(nameof(Get), new { id = p.Id }, p);
     }

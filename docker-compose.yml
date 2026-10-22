@@ -2,6 +2,26 @@ services:
   api:
     build: ./backend
     ports:
-      - "5000:80"
+      - "5000:8080"   # .NET 8 en Docker escucha en el 8080
     environment:
-      - ASPNETCORE_ENVIRONMENT=Production
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=Host=db;Port=5432;Database=huelladb;Username=postgres;Password=mypassword
+    depends_on:
+      - db
+
+  # Por ahora la API usa InMemoryDb; PostgreSQL se usará cuando migremos a EF Core.
+  db:
+    image: postgres:15-alpine
+    container_name: huella_alimentaria_db
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: mypassword
+      POSTGRES_DB: huelladb
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    ports:
+      - "5432:5432"
+
+volumes:
+  postgres_data:
